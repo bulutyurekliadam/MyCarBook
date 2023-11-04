@@ -1,0 +1,42 @@
+﻿using MyCarBook.DataAccessLayer.Abstract;
+using MyCarBook.DataAccessLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyCarBook.DataAccessLayer.Repositories
+{
+    public class GenericRepository<T> : IGenericDal<T> where T : class
+    {
+        CarBookContext context =  new CarBookContext();
+        public void Delete(T entity)
+        {
+            context.Set<T>().Remove(entity);
+            context.SaveChanges();
+        }
+
+        public T GetByID(int id)
+        {
+            return context.Set<T>().Find(id);
+        }
+
+        public List<T> GetListAll()
+        {
+            return context.Set<T>().ToList();
+        }
+
+        public void Insert(T entity)
+        {
+            context.Set<T>().Add(entity);
+
+        }
+
+        public void Update(T entity)
+        {
+            context.Set<T>().Update(entity);
+            context.SaveChanges();
+        }
+    }
+}

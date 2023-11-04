@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyCarBook.EntityLayer.Concrete;
+using MyCarBookEntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,21 @@ namespace MyCarBook.DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server = DESKTOP-H67U406; initial catalog=CarBookDb;integrated Security =true");
         }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Car> Cars{ get; set; }
+        public DbSet<CarCategory> CarCategories{ get; set; }
+
+        public DbSet<CarStatus> CarStatuses{ get; set; }
+
+        public DbSet<Location> Locations{ get; set; }
+        public DbSet<Price> Prices{ get; set; }
+
+
+
+
+
         //Ders 17 bitti 
     }
 }
