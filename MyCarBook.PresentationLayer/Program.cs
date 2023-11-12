@@ -1,10 +1,18 @@
+using MyCarBook.BusinessLayer.Abstract;
+using MyCarBook.BusinessLayer.Concrete;
+using MyCarBook.DataAccessLayer.Abstract;
 using MyCarBook.DataAccessLayer.Concrete;
+using MyCarBook.DataAccessLayer.EntityFramework;
 using MyCarBook.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CarBookContext>();
+builder.Services.AddScoped<IBrandDal, EfBrandDal>();
+builder.Services.AddScoped<IBrandService, BrandManager>();
+
 
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<CarBookContext>();
 var app = builder.Build();
