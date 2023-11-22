@@ -30,6 +30,7 @@ namespace MyCarBook.DataAccessLayer.Repositories
         public void Insert(T entity)
         {
             context.Set<T>().Add(entity);
+            context.SaveChanges();
 
         }
 
